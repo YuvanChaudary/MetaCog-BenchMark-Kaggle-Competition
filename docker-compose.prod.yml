@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  backend:
+    build: 
+      context: .
+      dockerfile: ./docker/Dockerfile.backend
+    volumes:
+      - ./backend/task_registry/tasks:/app/backend/task_registry/tasks
+    env_file:
+      - .env
+    environment:
+      - DATABASE_BACKEND=postgres
+      - DATABASE_URL=postgresql://metacog:pwd@postgres:5432/metacognition
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: always
+
+  postgres:
+    image: postgres:16-alpine
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U metacog"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: metacog
+      POSTGRES_PASSWORD: pwd
+      POSTGRES_DB: metacognition
+    restart: always
+
+  nginx:
+    image: nginx:1.25-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./docker/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: always
+
+volumes:
+  pgdata:

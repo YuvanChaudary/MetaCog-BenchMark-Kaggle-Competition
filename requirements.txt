@@ -1,0 +1,34 @@
+# API layer
+fastapi  # Core web framework for high-performance async API. Imported by backend.api.*
+uvicorn   # ASGI web server for FastAPI. Runs the application.
+
+# Model interface
+litellm   # Multi-model interface for LLMs. Imported by backend.evaluation.*
+
+# Evaluation engine
+sentence-transformers  # Semantic similarity scoring for answers. Imported by backend.evaluation.*
+
+# Storage
+duckdb    # In-process SQL database for MVP storage. Imported by backend.storage.results_db
+psycopg2-binary  # PostgreSQL adapter for production. Imported by backend.storage.results_db
+
+# Dashboard (MVP)
+streamlit # Rapid MVP dashboard creation. Executed as separate service.
+plotly    # Interactive charts for Streamlit. Imported by Streamlit app.
+
+# Reporting
+mlflow    # Experiment tracking and artifact logging. Imported by backend.storage.version_manager
+
+# Auth
+python-jose[cryptography] # JWT token generation and validation. Imported by backend.core.auth
+passlib[bcrypt] # Password hashing. Imported by backend.core.auth
+
+# Testing
+pytest     # Testing framework. Run via CLI for unit and integration tests.
+pytest-asyncio # Async support for pytest. Used by async tests.
+
+# Dev tools
+pydantic   # Data validation and settings. Imported globally in backend.core.*
+pydantic-settings # settings management. Imported by backend.core.config
+ruff       # Fast linter and code formatter. Run via CLI.
+mypy       # Static type checker. Run via CLI.

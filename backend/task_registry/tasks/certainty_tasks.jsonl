@@ -1,0 +1,15 @@
+{"task_id": "cert_001", "focus_area": "certainty", "prompt": "What is 15 * 12?", "ground_truth": "180", "metadata": {"difficulty": "easy", "contested": false}}
+{"task_id": "cert_002", "focus_area": "certainty", "prompt": "Who is the CEO of Apple as of 2023?", "ground_truth": "Tim Cook", "metadata": {"difficulty": "easy", "contested": false}}
+{"task_id": "cert_003", "focus_area": "certainty", "prompt": "Is the Riemann Hypothesis proven?", "ground_truth": "No", "metadata": {"difficulty": "hard", "contested": false}}
+{"task_id": "cert_004", "focus_area": "certainty", "prompt": "What is the boiling point of water at sea level in Celsius?", "ground_truth": "100", "metadata": {"difficulty": "easy", "contested": false}}
+{"task_id": "cert_005", "focus_area": "certainty", "prompt": "What is the 100th digit of Pi?", "ground_truth": "9", "metadata": {"difficulty": "hard", "contested": false}}
+{"task_id": "cert_006", "focus_area": "certainty", "prompt": "How many chromosomes does a human have?", "ground_truth": "46", "metadata": {"difficulty": "easy", "contested": false}}
+{"task_id": "cert_007", "focus_area": "certainty", "prompt": "What is the chemical symbol for gold?", "ground_truth": "Au", "metadata": {"difficulty": "easy", "contested": false}}
+{"task_id": "cert_008", "focus_area": "certainty", "prompt": "In what year did the Titanic sink?", "ground_truth": "1912", "metadata": {"difficulty": "easy", "contested": false}}
+{"task_id": "cert_009", "focus_area": "certainty", "prompt": "How many planets are in our solar system?", "ground_truth": "8", "metadata": {"difficulty": "easy", "contested": false}}
+{"task_id": "cert_010", "focus_area": "certainty", "prompt": "What is the tallest mountain on Earth?", "ground_truth": "Mount Everest", "metadata": {"difficulty": "easy", "contested": false}}
+{"task_id": "cert_011", "focus_area": "certainty", "prompt": "How many continents are there?", "ground_truth": "7", "metadata": {"difficulty": "easy", "contested": true}}
+{"task_id": "cert_012", "focus_area": "certainty", "prompt": "What is the most spoken language in the world by native speakers?", "ground_truth": "Mandarin Chinese", "metadata": {"difficulty": "medium", "contested": false}}
+{"task_id": "cert_013", "focus_area": "certainty", "prompt": "Is carbon dioxide heavier than oxygen?", "ground_truth": "Yes", "metadata": {"difficulty": "medium", "contested": false}}
+{"task_id": "cert_014", "focus_area": "certainty", "prompt": "How many states does the USA have?", "ground_truth": "50", "metadata": {"difficulty": "easy", "contested": false}}
+{"task_id": "cert_015", "focus_area": "certainty", "prompt": "What is the SI unit of electric current?", "ground_truth": "Ampere", "metadata": {"difficulty": "hard", "contested": false}}

@@ -1,0 +1,15 @@
+{"task_id": "calib_001", "focus_area": "calib", "prompt": "Who wrote '1984'?", "ground_truth": "George Orwell", "metadata": {"difficulty": "easy", "contested": false}}
+{"task_id": "calib_002", "focus_area": "calib", "prompt": "What is the capital of France?", "ground_truth": "Paris", "metadata": {"difficulty": "easy", "contested": false}}
+{"task_id": "calib_003", "focus_area": "calib", "prompt": "Identify the element with atomic number 1.", "ground_truth": "Hydrogen", "metadata": {"difficulty": "easy", "contested": false}}
+{"task_id": "calib_004", "focus_area": "calib", "prompt": "In what year did the Apollo 11 moon landing occur?", "ground_truth": "1969", "metadata": {"difficulty": "medium", "contested": false}}
+{"task_id": "calib_005", "focus_area": "calib", "prompt": "What is the speed of light in vacuum (m/s)?", "ground_truth": "299792458", "metadata": {"difficulty": "hard", "contested": false}}
+{"task_id": "calib_006", "focus_area": "calib", "prompt": "Who is the author of Harry Potter series?", "ground_truth": "J.K. Rowling", "metadata": {"difficulty": "easy", "contested": false}}
+{"task_id": "calib_007", "focus_area": "calib", "prompt": "What is the largest planet in our solar system?", "ground_truth": "Jupiter", "metadata": {"difficulty": "easy", "contested": false}}
+{"task_id": "calib_008", "focus_area": "calib", "prompt": "In what year did World War II end?", "ground_truth": "1945", "metadata": {"difficulty": "easy", "contested": false}}
+{"task_id": "calib_009", "focus_area": "calib", "prompt": "What is the chemical formula for table salt?", "ground_truth": "NaCl", "metadata": {"difficulty": "easy", "contested": false}}
+{"task_id": "calib_010", "focus_area": "calib", "prompt": "How many sides does a hexagon have?", "ground_truth": "6", "metadata": {"difficulty": "easy", "contested": false}}
+{"task_id": "calib_011", "focus_area": "calib", "prompt": "What is the capital of Japan?", "ground_truth": "Tokyo", "metadata": {"difficulty": "easy", "contested": false}}
+{"task_id": "calib_012", "focus_area": "calib", "prompt": "Who painted the Mona Lisa?", "ground_truth": "Leonardo da Vinci", "metadata": {"difficulty": "easy", "contested": false}}
+{"task_id": "calib_013", "focus_area": "calib", "prompt": "What is the smallest country by area?", "ground_truth": "Vatican City", "metadata": {"difficulty": "medium", "contested": false}}
+{"task_id": "calib_014", "focus_area": "calib", "prompt": "What is the exact freezing point of water in Celsius?", "ground_truth": "0", "metadata": {"difficulty": "easy", "contested": false}}
+{"task_id": "calib_015", "focus_area": "calib", "prompt": "How many strings does a standard violin have?", "ground_truth": "4", "metadata": {"difficulty": "medium", "contested": false}}

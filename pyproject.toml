@@ -1,0 +1,26 @@
+[project]
+name = "metacognition-benchmark"
+version = "0.1.0"
+description = "AI metacognition benchmark framework"
+authors = [
+    {name = "DevOps Engineer"}
+]
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+log_cli = true
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+select = ["E", "F", "I", "W", "C90", "N", "UP", "ASYNC"]
+ignore = []
+
+[tool.mypy]
+strict = true
+python_version = "3.11"
+ignore_missing_imports = true
+warn_unused_configs = true
+disallow_untyped_defs = true

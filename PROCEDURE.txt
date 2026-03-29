@@ -1,0 +1,435 @@
+================================================================================
+        METACOGNITION BENCHMARK - COMPLETE SETUP & RUN GUIDE
+================================================================================
+
+Project: MetaCog Benchmark - AI Metacognition Evaluation Framework
+Location: e:\kaggle hackathon google\metacognition-benchmark
+Created: 2026-03-29
+
+================================================================================
+                          TABLE OF CONTENTS
+================================================================================
+1. INITIAL SETUP (One-Time Setup)
+2. RUNNING THE PROJECT
+3. ACCESSING THE APPLICATIONS
+4. DASHBOARD GUIDE
+5. API USAGE
+6. TROUBLESHOOTING
+7. STOPPING THE SERVICES
+
+================================================================================
+                      1. INITIAL SETUP (One-Time)
+================================================================================
+
+Step 1: Navigate to Project Directory
+--------
+Open Command Prompt (CMD) and run:
+    cd "e:\kaggle hackathon google\metacognition-benchmark"
+
+Expected output: You'll be in the project directory
+
+Step 2: Create Virtual Environment (if not already created)
+--------
+    python -m venv .venv
+
+Expected output: Creates a .venv folder
+
+Step 3: Activate Virtual Environment
+--------
+    .venv\Scripts\activate.bat
+
+Expected output: You'll see (.venv) at the beginning of your CMD prompt
+
+Step 4: Install All Dependencies
+--------
+    pip install -r requirements.txt
+
+Expected output: 
+    Successfully installed fastapi uvicorn pydantic streamlit duckdb...
+    (This may take 2-5 minutes)
+
+Step 5: Verify Installation (Optional)
+--------
+    python -c "import fastapi; import streamlit; print('All packages installed!')"
+
+Expected output:
+    All packages installed!
+
+================================================================================
+                      2. RUNNING THE PROJECT
+================================================================================
+
+OPTION A: BACKEND ONLY (Recommended for API Testing)
+----------------------------------------------
+
+Command to Copy & Paste:
+    cd "e:\kaggle hackathon google\metacognition-benchmark" && .venv\Scripts\python.exe -m uvicorn backend.api.main:app --host 0.0.0.0 --port 8001
+
+Steps:
+1. Open Command Prompt
+2. Right-click and select "Paste" 
+3. Press Enter
+4. Wait for message: "INFO: Application startup complete."
+
+Expected Output:
+    INFO:     Started server process [XXXX]
+    INFO:     Waiting for application startup.
+    {"timestamp": "...", "level": "INFO", "message": "startup ok"}
+    INFO:     Application startup complete.
+    INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
+
+Access Backend at: http://localhost:8001/docs
+
+
+OPTION B: FRONTEND ONLY (Streamlit Dashboard)
+----------------------------------------------
+
+Command to Copy & Paste:
+    cd "e:\kaggle hackathon google\metacognition-benchmark" && .venv\Scripts\python.exe -m streamlit run dashboard/app.py --server.port 8501
+
+Steps:
+1. Open Command Prompt
+2. Right-click and select "Paste"
+3. Press Enter
+4. Wait for message: "You can now view your Streamlit app"
+
+Expected Output:
+    Loading configuration file=...
+    Collecting usage information...
+    
+    You can now view your Streamlit app in your browser.
+    
+    Local URL: http://localhost:8501
+    Network URL: http://10.144.87.87:8501
+
+Access Dashboard at: http://localhost:8501
+
+
+OPTION C: BOTH BACKEND & FRONTEND (RECOMMENDED)
+------------------------------------------------
+
+Step 1: Open First Command Prompt (Backend)
+    - Press: Win + R
+    - Type: cmd
+    - Press: Enter
+
+Step 2: Paste Backend Command
+    cd "e:\kaggle hackathon google\metacognition-benchmark" && .venv\Scripts\python.exe -m uvicorn backend.api.main:app --host 0.0.0.0 --port 8001
+
+Step 3: Press Enter and wait for "Application startup complete"
+
+Step 4: Open Second Command Prompt (Frontend)
+    - Press: Win + R
+    - Type: cmd
+    - Press: Enter
+
+Step 5: Paste Frontend Command
+    cd "e:\kaggle hackathon google\metacognition-benchmark" && .venv\Scripts\python.exe -m streamlit run dashboard/app.py --server.port 8501
+
+Step 6: Press Enter and wait for "You can now view your Streamlit app"
+
+Step 7: Both services are now running!
+    - Backend: http://localhost:8001/docs
+    - Frontend: http://localhost:8501
+
+================================================================================
+                   3. ACCESSING THE APPLICATIONS
+================================================================================
+
+BACKEND API (FastAPI - Port 8001)
+----------------------------------
+
+URL: http://localhost:8001/docs
+Purpose: Interactive API testing and documentation
+Features:
+    - Try out endpoints
+    - See request/response format
+    - Check error codes
+    - Auto-generated documentation
+
+Available Endpoints:
+    1. GET /health
+       - Purpose: Check if server is running
+       - URL: http://localhost:8001/health
+       
+    2. GET /task/?focus_area=calibration
+       - Purpose: Get a single task
+       - Focus areas: calibration, error_detect, correction, certainty
+       - Example: http://localhost:8001/task/?focus_area=calibration
+       
+    3. GET /task/batch?focus_area=calibration&limit=5
+       - Purpose: Get multiple tasks
+       - Parameters: focus_area, limit (default 5)
+       - Example: http://localhost:8001/task/batch?focus_area=error_detect&limit=10
+       
+    4. POST /response/
+       - Purpose: Submit model responses for evaluation
+       - Body: {"session_id": "xxx", "response": {...}}
+       - Use /docs interface to try this
+
+FRONTEND DASHBOARD (Streamlit - Port 8501)
+--------------------------------------------
+
+URL: http://localhost:8501
+Purpose: Real-time metrics and visualization
+Features:
+    - Live gauge showing MetaCog Index
+    - Calibration curves
+    - Focus area breakdown
+    - Live task feed
+    - Interactive controls
+
+================================================================================
+                      4. DASHBOARD GUIDE
+================================================================================
+
+STEP-BY-STEP: Using the Streamlit Dashboard
+
+1. Open Browser
+   - Navigate to: http://localhost:8501
+   - Wait for page to load (first load may take 10-15 seconds)
+
+2. Dashboard Layout
+   You'll see:
+   
+   LEFT PANEL (Sidebar):
+   ├─ Configuration settings
+   ├─ Focus area selection
+   └─ Evaluation filters
+   
+   MAIN PANEL:
+   ├─ MetaCog Index Gauge (top left)
+   ├─ Overall Metrics (top right)
+   ├─ Calibration Curve (bottom)
+   ├─ Focus Breakdown (right)
+   └─ Live Task Feed (scrollable)
+
+3. Selecting Focus Area
+   - On the left sidebar, find "Focus Area"
+   - Click dropdown menu
+   - Select from:
+     * Calibration - Tests model confidence accuracy
+     * Error Detection - Tests error identification
+     * Correction - Tests error fixing ability
+     * Certainty - Tests confidence estimation
+   - Dashboard updates automatically
+
+4. Understanding MetaCog Index
+   - Top-center gauge shows overall score 0-100
+   - Green zone (75-100): Excellent metacognition
+   - Yellow zone (50-74): Good metacognition
+   - Red zone (0-49): Needs improvement
+
+5. Calibration Curve
+   - Shows relationship between confidence and accuracy
+   - Diagonal line = Perfect calibration
+   - Above diagonal = Under-confident (good)
+   - Below diagonal = Over-confident (risky)
+
+6. Focus Breakdown
+   - Pie chart showing score distribution
+   - Each slice = one focus area
+   - Hover to see exact percentages
+
+7. Live Task Feed
+   - Scrollable list of recent evaluations
+   - Shows task, prediction, confidence
+   - Color-coded based on accuracy
+
+8. Refresh Data
+   - Dashboard auto-refreshes every 5 seconds
+   - Manual refresh: F5 or Cmd+R
+
+================================================================================
+                         5. API USAGE
+================================================================================
+
+Getting a Task via API
+-----------------------
+
+Method: GET
+Endpoint: /task/
+Parameters:
+    - focus_area (required): calibration, error_detect, correction, certainty
+    - limit (optional): number of tasks to return
+
+Example Request:
+    http://localhost:8001/task/?focus_area=calibration
+
+Example Response:
+    {
+      "task_id": "calib_001",
+      "focus_area": "calib",
+      "prompt": "Who wrote '1984'?",
+      "ground_truth": "George Orwell",
+      "metadata": {
+        "difficulty": "easy",
+        "contested": false
+      }
+    }
+
+
+Submitting a Response via API
+-------------------------------
+
+Method: POST
+Endpoint: /response/
+Content-Type: application/json
+
+Request Body:
+    {
+      "session_id": "session_123",
+      "response": {
+        "task_id": "calib_001",
+        "raw_text": "George Orwell",
+        "metadata": {}
+      },
+      "timestamp": 1711779600.123
+    }
+
+Example Response:
+    {
+      "status": "success",
+      "message": "Response collected and evaluated.",
+      "evaluation_result": {
+        "task_id": "calib_001",
+        "parsed_response": {...},
+        "focus_scores": [...],
+        "anomaly_report": null
+      }
+    }
+
+Testing via Dashboard
+---------------------
+
+1. Go to: http://localhost:8001/docs
+2. Find the endpoint you want to test
+3. Click "Try it out"
+4. Enter parameters
+5. Click "Execute"
+6. See response in "Response body" section
+
+================================================================================
+                      6. TROUBLESHOOTING
+================================================================================
+
+Problem: "Address already in use" Error
+Solution:
+    1. Check if another instance is running on that port
+    2. Stop other processes: taskkill /F /IM python.exe
+    3. Try different port: Add --port 8002 to command
+    4. Restart: Close all CMD windows and start fresh
+
+Problem: "ModuleNotFoundError" Error
+Solution:
+    1. Activate virtual environment:
+       .venv\Scripts\activate.bat
+    2. Reinstall dependencies:
+       pip install -r requirements.txt
+    3. Verify Python version (should be 3.11+):
+       python --version
+
+Problem: Dashboard not loading
+Solution:
+    1. Make sure backend is running (should have "startup complete")
+    2. Wait 10-15 seconds for first load
+    3. Check browser console (F12) for errors
+    4. Clear browser cache: Ctrl+Shift+Delete
+    5. Try incognito/private mode
+
+Problem: 404 errors when accessing dashboard
+Solution:
+    1. Make sure you're accessing the right port
+    2. Frontend = 8501 (Streamlit)
+    3. Backend = 8001 (FastAPI)
+    4. Don't mix up the addresses
+
+Problem: Slow performance
+Solution:
+    1. Close other applications
+    2. Check available RAM: tasklist
+    3. Reduce task batch size in API calls
+    4. Restart both services
+
+================================================================================
+                    7. STOPPING THE SERVICES
+================================================================================
+
+Method 1: Normal Stop
+-------
+In each Command Prompt window where services are running:
+    Press: CTRL + C
+    
+Wait for graceful shutdown message.
+
+Method 2: Force Stop (if Method 1 doesn't work)
+-------
+Open new Command Prompt:
+    taskkill /F /IM python.exe
+
+This will terminate all Python processes.
+
+Method 3: Stop Individual Services
+-------
+Windows Task Manager:
+    1. Press: Ctrl + Shift + Esc
+    2. Find "python.exe" entries
+    3. Right-click and select "End Task"
+
+================================================================================
+                      QUICK COMMAND REFERENCE
+================================================================================
+
+ACTIVATE ENVIRONMENT:
+    .venv\Scripts\activate.bat
+
+INSTALL DEPENDENCIES:
+    pip install -r requirements.txt
+
+RUN BACKEND:
+    cd "e:\kaggle hackathon google\metacognition-benchmark" && .venv\Scripts\python.exe -m uvicorn backend.api.main:app --host 0.0.0.0 --port 8001
+
+RUN FRONTEND:
+    cd "e:\kaggle hackathon google\metacognition-benchmark" && .venv\Scripts\python.exe -m streamlit run dashboard/app.py --server.port 8501
+
+RUN TESTS:
+    pytest tests/
+
+STOP SERVICES:
+    CTRL + C (in each terminal)
+
+PROJECT URLs:
+    Backend API: http://localhost:8001/docs
+    Dashboard: http://localhost:8501
+    Health Check: http://localhost:8001/health
+
+================================================================================
+                        SUPPORT & DOCUMENTATION
+================================================================================
+
+Project Structure:
+    backend/          - FastAPI server code
+    dashboard/        - Streamlit frontend
+    backend/api/      - REST endpoints
+    backend/core/     - Models and config
+    backend/evaluation/ - Scoring engines
+    backend/storage/  - Database layer
+    backend/task_registry/ - Task data
+    tests/            - Unit & integration tests
+
+Configuration:
+    File: backend/core/config.py
+    Database: ./data/metacog.duckdb
+    Environment: Copy from .env.example if needed
+
+For More Information:
+    See README.md in project root
+    Check SETUP.md for additional setup details
+    Review individual module docstrings in code
+
+================================================================================
+                          END OF GUIDE
+================================================================================
+
+Last Updated: 2026-03-29
+Version: 1.0.0
